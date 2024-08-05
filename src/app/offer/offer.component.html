@@ -1,0 +1,58 @@
+<div class="container">
+  <h1 class="text-center">Offres</h1>
+
+  <!-- Add/Edit Offer Form -->
+  <div class="form-section">
+    <h2>{{ isEditing ? 'Modifier' : 'Ajouter' }} une Offre</h2>
+    <form [formGroup]="offerForm" (ngSubmit)="isEditing ? updateOffer() : addOffer()">
+      <div class="form-group">
+        <label for="type">Type:</label>
+        <input id="type" formControlName="type" class="form-control" placeholder="Entrez le type d'offre" />
+      </div>
+      <div class="form-group">
+        <label for="name">Nom:</label>
+        <input id="name" formControlName="name" class="form-control" placeholder="Entrez le nom de l'offre" />
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input id="description" formControlName="description" class="form-control" placeholder="Entrez une description" />
+      </div>
+      <div class="form-group">
+        <label for="price">Prix:</label>
+        <input id="price" type="number" formControlName="price" class="form-control" placeholder="Entrez le prix" />
+      </div>
+      <button type="submit" class="btn btn-custom">{{ isEditing ? 'Mettre à jour' : 'Ajouter' }}</button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()" *ngIf="isEditing">Annuler</button>
+    </form>
+  </div>
+
+  <!-- Offer List -->
+  <div class="table-section">
+    <h2>Liste des Offres</h2>
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Prix</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let offer of offers">
+          <td>{{ offer.id }}</td>
+          <td>{{ offer.type }}</td>
+          <td>{{ offer.name }}</td>
+          <td>{{ offer.description }}</td>
+          <td>{{ offer.price }}</td>
+          <td>
+            <button (click)="editOffer(offer)" class="btn btn-warning btn-sm">Modifier</button>
+            <button (click)="deleteOffer(offer.id)" class="btn btn-danger btn-sm">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

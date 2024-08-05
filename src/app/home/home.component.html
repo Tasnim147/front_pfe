@@ -1,0 +1,21 @@
+<!-- src/app/product/product.component.html -->
+<div id="fh5co-project">
+	<div class="container">
+	  <div class="row ">
+		<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+		  <h2>Our Products</h2>
+		  <p>Discover our latest products with high-quality images and details.</p>
+		</div>
+	  </div>
+	  <div class="row">
+		<div *ngFor="let product of products" class="col-md-4 col-sm-6 fh5co-project" data-animate-effect="fadeIn">
+		  <a href="#">
+			<img [src]="product.imageUrl" [alt]="product.name" class="img-responsive">
+			<h3>{{ product.name }}</h3>
+			<span>{{ product.description }}</span>
+		  </a>
+		</div>
+	  </div>
+	</div>
+  </div>
+  
