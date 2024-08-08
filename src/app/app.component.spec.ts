@@ -1,14 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';  // Import BrowserAnimationsModule
-import { AppComponent } from './app.component';
-
+import { AppComponent } from './app.component'; // Assurez-vous que AppComponent est standalone
+import { RouterOutlet } from '@angular/router'; // Importez RouterOutlet si nécessaire
+import { HttpClientTestingModule } from '@angular/common/http/testing'; // Importez HttpClientTestingModule
+import { NavbarComponent } from './navbar/navbar.component'; // Importez le NavbarComponent
+import { FooterComponent } from './footer/footer.component';
+import { RouterTestingModule } from "@angular/router/testing";
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, AppComponent]  // Import AppComponent here
+      imports: [
+        AppComponent,
+        RouterOutlet,
+        HttpClientTestingModule, // Ajoutez HttpClientTestingModule
+        RouterTestingModule,
+        NavbarComponent,
+        FooterComponent
+      ]
     }).compileComponents();
   });
 
@@ -18,8 +28,12 @@ describe('AppComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should render title', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Hello, my-angular-frontend');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Welcome to Orange'); // Ajustez selon votre contenu
   });
 });

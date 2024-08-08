@@ -1,5 +1,3 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -14,19 +12,30 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node", // Changed from "bundler" to "node" for better compatibility
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "baseUrl": "./", // Base directory for non-relative imports
+    "paths": {
+      "@service/*": ["src/app/service/*"] // Example of path alias
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
 }
